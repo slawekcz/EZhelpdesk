@@ -12,19 +12,19 @@
 
 <body>
 <div class="row">
-    <dixv class="col-md-10 col-md-offset-1">
+    <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
             <div class="panel-heading">
-                ${ticket.id} - ${ticket.title} - Created by ${ticket.user.username}
+                <p>Ticket id ${ticket.id}</p>
+                <p>Title ${ticket.title}</p>
+                <p>Created by ${ticket.user.username}</p>
             </div>
 
             <div class="panel-body">
 
 
                 <div class="ticket-info">
-                    <p>${ticket.text}</p>
-                    <p>Category: ${ticket.category.name}</p>
-                    <p>
+                    <p>Category: ${ticket.category.name}
                         <c:choose>
                             <c:when test="${ticket.status == 'open'}">
                                 <span class="label label-success">${ticket.status}</span>
@@ -34,7 +34,11 @@
                             </c:otherwise>
                         </c:choose>
                     </p>
+                    <p>${ticket.text}</p>
+
                     <p>Created on: ${ticket.created}</p>
+
+                    <%@include file="../file/filelist.jsp"%>
                 </div>
 
             </div>
@@ -87,7 +91,7 @@
                 </div>
             </div>
         </sec:authorize>
-    </dix`v>
+    </div>
 </div>
 
 </body>

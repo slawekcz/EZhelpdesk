@@ -36,4 +36,7 @@ public class Ticket {
     @OneToMany(mappedBy = "ticket")
     private List<Comment> comment;
 
+    @OneToMany(mappedBy = "ticket")
+    private List<File> files;
+
 }

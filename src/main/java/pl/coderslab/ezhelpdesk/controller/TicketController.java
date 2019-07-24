@@ -2,7 +2,6 @@ package pl.coderslab.ezhelpdesk.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +11,7 @@ import pl.coderslab.ezhelpdesk.entity.Comment;
 import pl.coderslab.ezhelpdesk.entity.Ticket;
 import pl.coderslab.ezhelpdesk.entity.User;
 import pl.coderslab.ezhelpdesk.repository.CategoryRepository;
+import pl.coderslab.ezhelpdesk.repository.FileRepository;
 import pl.coderslab.ezhelpdesk.repository.TicketRepository;
 import pl.coderslab.ezhelpdesk.repository.UserRepository;
 import pl.coderslab.ezhelpdesk.service.CurrentUser;
@@ -21,16 +21,18 @@ import java.util.List;
 
 @Controller
 public class TicketController {
-    TicketRepository ticketRepository;
-    UserRepository userRepository;
-    CategoryRepository categoryRepository;
+    private TicketRepository ticketRepository;
+    private UserRepository userRepository;
+    private CategoryRepository categoryRepository;
+    private FileRepository fileRepository;
 
     @Autowired
     public TicketController(TicketRepository ticketRepository, UserRepository userRepository,
-                            CategoryRepository categoryRepository) {
+                            CategoryRepository categoryRepository, FileRepository fileRepository) {
         this.ticketRepository = ticketRepository;
         this.userRepository = userRepository;
         this.categoryRepository = categoryRepository;
+        this.fileRepository = fileRepository;
     }
 
     @GetMapping({"/ticket/index"})
@@ -52,6 +54,7 @@ public class TicketController {
         model.addAttribute("ticket", ticket);
         model.addAttribute("comment", new Comment());
         model.addAttribute("currentUser", currentUser);
+        model.addAttribute("files", fileRepository.findAllByTicketId(id));
         return "ticket/details";
     }
 
