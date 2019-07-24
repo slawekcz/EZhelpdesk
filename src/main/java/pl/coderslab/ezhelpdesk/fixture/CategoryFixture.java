@@ -11,15 +11,15 @@ public class CategoryFixture {
     CategoryRepository categoryRepository;
 
     public void initData() {
-        Category category1 = new Category();
-        category1.setName("Technical issues");
-        Category category2 = new Category();
-        category2.setName("Feature requests");
-        Category category3 = new Category();
-        category3.setName("Bugs");
-
-        categoryRepository.save(category1);
-        categoryRepository.save(category2);
-        categoryRepository.save(category3);
+//        Category category1 = new Category();
+//        category1.setName("Technical issues");
+//        Category category2 = new Category();
+//        category2.setName("Feature requests");
+//        Category category3 = new Category();
+//        category3.setName("Bugs");
+//
+//        categoryRepository.save(category1);
+//        categoryRepository.save(category2);
+//        categoryRepository.save(category3);
     }
 }

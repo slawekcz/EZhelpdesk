@@ -11,14 +11,14 @@ import pl.coderslab.ezhelpdesk.entity.User;
 
 @Controller
 public class HomeController {
-    @GetMapping("/login")
+    @GetMapping("/")
     public String login(Model model) {
-        return "user/signin";
+        return "redirect:/ticket/index";
     }
 
-    @PostMapping("/login")
-    public String create(@RequestParam String login, @RequestParam String password) {
-
-        return "user/signin";
-    }
+//    @PostMapping("/login")
+//    public String create(@RequestParam String login, @RequestParam String password) {
+//
+//        return "user/signin";
+//    }
 }

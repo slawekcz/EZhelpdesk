@@ -2,9 +2,10 @@ package pl.coderslab.ezhelpdesk.entity;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.validator.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,7 +17,9 @@ public class Ticket {
     private Long id;
     @NotBlank
     private String title;
+
     @NotBlank
+    @Column(columnDefinition = "TEXT")
     private String text;
 
     private String status;

@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <html>
 <%@ include file="../include/header.jspf" %>
 <%@ include file="../include/navbar.jspf" %>
@@ -20,6 +22,7 @@
                 <table class="table">
                     <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Title</th>
                         <th>Category</th>
                         <th>Status</th>
@@ -31,12 +34,15 @@
                     <c:forEach items="${tickets}" var="ticket">
                         <tr>
                             <td>
+                                Nr ${ticket.id }
+                            </td>
+                            <td>
                                 <a href=<c:url value="${pageContext.request.contextPath}/ticket/${ticket.id}"/>>
-                                        ${ticket.id } - ${ticket.title}
+                                        ${ticket.title}
                                 </a>
                             </td>
                             <td>
-                                    ${ticket.category.name }
+                                    ${ticket.category.name}
                             </td>
                             <td>
                                 <c:choose>
@@ -52,10 +58,12 @@
                             <td>
                                 <a href="${pageContext.request.contextPath}/ticket/${ticket.id}"
                                    class="label label-info">Comment</a>
-                                <c:if test="${ticket.status == 'open'}">
-                                    <a href="${pageContext.request.contextPath}admin/ticket/close/${ticket.id}"
-                                       class="label label-danger">Close</a>
-                                </c:if>
+                                <sec:authorize access="hasRole('ADMIN')">
+                                    <c:if test="${ticket.status == 'open'}">
+                                        <a href="${pageContext.request.contextPath}/ticket/${ticket.id}/close"
+                                           class="label label-danger">Close</a>
+                                    </c:if>
+                                </sec:authorize>
                             </td>
                         </tr>
                     </c:forEach>

@@ -19,9 +19,6 @@
             <div class="panel-heading">Open New Ticket</div>
 
             <div class="panel-body">
-                <div class="alert alert-success">
-                    Success
-                </div>
 
                 <form:form class="form-horizontal" role="form" method="POST" modelAttribute="ticket">
                     User=${user.id}

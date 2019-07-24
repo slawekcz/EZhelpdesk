@@ -22,12 +22,13 @@ public class User {
     private String firstName;
     @NotBlank
     private String lastName;
-    @Email
+    @Email(message = "enter valid email")
     private String email;
     @Size(min = 3)
     private String password;
 
     @Column(nullable = false, unique = true)
+    @NotBlank
     private String username;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
