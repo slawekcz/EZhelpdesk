@@ -61,12 +61,15 @@
                         </p> <span> ${comment.user.username}</span>
 
                         <sec:authorize access="hasRole('ADMIN')">
-                        <span class="pull-right"><a href="#"
-                                                    onclick="confirmDeleteComment(${ticket.id}, ${comment.id})">Delete</a>
-
+                            <span class="pull-right">
+                                <a href="#"  class="btn btn-default btn-default-mod btn-xs"
+                                   data-toggle="modal"
+                                   data-target="#deleteModal"
+                                   data-comment-id="${comment.id}"
+                                   data-ticket-id="${ticket.id}"
+                                   title="Delete comment">Delete</a>
+                            </span>
                         </sec:authorize>
-
-                        </span>
                         <span class="pull-right">
                                 <fmt:parseDate value="${comment.created}}" pattern="yyyy-MM-dd'T'HH:mm"
                                             var="parsedDateTime" type="both"/>
@@ -112,6 +115,29 @@
     </div>
 </div>
 
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Potwierdzenie usunięcia</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <p>Czy na pewno usunąć<strong><span id="bookTitle"></span></strong>?</p>
+            </div>
+
+            <div class="modal-footer">
+                <button id="deleteId" type="button" class="btn btn-default btn-default-mod">Confirm</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 <script>
     function confirmDeleteComment(tid, cid) {
@@ -119,5 +145,16 @@
             window.location.href = "/ticket/" + tid + "/comment/" + cid + "/delete";
         }
     }
+
+    $(document).ready(function(){
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            let cid = $(event.relatedTarget).data('comment-id');
+            let tid = $(event.relatedTarget).data('ticket-id');
+            // $(this).find('.modal-body p #bookTitle').text(bookTitle);
+            $('#deleteId').on('click', function () {
+                window.location.href = "/ticket/" + tid + "/comment/" + cid + "/delete";
+            })
+        });
+    });
 </script>
 </html>
