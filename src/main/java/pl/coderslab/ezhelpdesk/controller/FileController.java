@@ -14,32 +14,31 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
-@RequestMapping("/files")
 public class FileController {
 
     @Autowired
     private FileService fileService;
 
-    @GetMapping("/list")
+    @GetMapping("/files/list")
     public String list(Model model){
         List<File> files = fileService.findAll();
         model.addAttribute("files", files);
         return "file/filelist";
     }
 
-    @PostMapping("/list")
+    @PostMapping("/files/list")
     public String uploadFile(@RequestParam("file") MultipartFile file, @RequestParam(name = "ticketId") Long id, Model model) {
         fileService.saveFile(file, id);
         return "redirect:/ticket/" + id;
     }
 
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    @GetMapping("/ticket/{ticketId}/files/delete/{id}")
+    public String delete(@PathVariable(name = "id") Long id, @PathVariable(name = "ticketId") Long tId) {
         fileService.delete(id);
-        return "redirect:../list";
+        return "redirect:/ticket/" + tId ;
     }
 
-    @GetMapping("/download/{id}")
+    @GetMapping("/files/download/{id}")
     public String download(@PathVariable Long id, HttpServletResponse response) throws IOException {
         File file = fileService.findById(id);
         response.setContentType(file.getFileType());

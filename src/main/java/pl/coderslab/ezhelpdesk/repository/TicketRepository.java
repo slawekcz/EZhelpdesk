@@ -14,6 +14,8 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
     public Ticket findFirstById(Long id);
 
+    public List<Ticket> findAllByCategoryId(Long id);
+
     @Query("select t from Ticket t where t.title like %?1%")
     public List<Ticket> findAllByTitleLike(String query);
 

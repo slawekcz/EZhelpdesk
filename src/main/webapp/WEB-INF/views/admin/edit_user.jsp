@@ -26,7 +26,7 @@
 </style>
 <body>
 <h2 class="center-text">Edit user</h2>
-<form:form class="form-signin center-block" action="/register" method="post" modelAttribute="user">
+<form:form class="form-signin center-block" action="/admin/user/edit" method="post" modelAttribute="user">
     <form:hidden path="id"/>
     <div class="form-group">
         <form:label path="email">Email:</form:label>

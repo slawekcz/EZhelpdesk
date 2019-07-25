@@ -78,7 +78,7 @@ public class UserController {
         if (result.hasErrors()) {
             return "admin/edit_user";
         }
-        userService.saveUser(user);
+        userService.editUser(user);
         return "redirect:/admin/users";
     }
 }

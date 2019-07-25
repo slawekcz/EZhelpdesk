@@ -14,30 +14,31 @@ import pl.coderslab.ezhelpdesk.repository.CategoryRepository;
 import pl.coderslab.ezhelpdesk.repository.FileRepository;
 import pl.coderslab.ezhelpdesk.repository.TicketRepository;
 import pl.coderslab.ezhelpdesk.repository.UserRepository;
-import pl.coderslab.ezhelpdesk.service.CurrentUser;
+import pl.coderslab.ezhelpdesk.service.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 public class TicketController {
-    private TicketRepository ticketRepository;
-    private UserRepository userRepository;
-    private CategoryRepository categoryRepository;
-    private FileRepository fileRepository;
+    private FileService fileService;
+    private UserService userService;
+    private TicketService ticketService;
+    private CategoryService categoryService;
 
     @Autowired
-    public TicketController(TicketRepository ticketRepository, UserRepository userRepository,
-                            CategoryRepository categoryRepository, FileRepository fileRepository) {
-        this.ticketRepository = ticketRepository;
-        this.userRepository = userRepository;
-        this.categoryRepository = categoryRepository;
-        this.fileRepository = fileRepository;
+    public TicketController(FileService fileService, UserService userService,
+                            TicketService ticketService, CategoryService categoryService) {
+        this.fileService = fileService;
+        this.userService = userService;
+        this.ticketService = ticketService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping({"/ticket/index"})
     public String index(Model model, @AuthenticationPrincipal CurrentUser customUser) {
-        List<Ticket> tickets = ticketRepository.findAll();
+        List<Ticket> tickets = ticketService.findAll();
+
         model.addAttribute("tickets", tickets);
         model.addAttribute("title", "Tickets");
         if (customUser != null) {
@@ -50,17 +51,17 @@ public class TicketController {
     @GetMapping("/ticket/{ticketId}")
     public String index(@PathVariable(name = "ticketId") Long id, Model model,
                         @AuthenticationPrincipal CurrentUser currentUser) {
-        Ticket ticket = ticketRepository.findFirstById(id);
+        Ticket ticket = ticketService.findFirstById(id);
         model.addAttribute("ticket", ticket);
         model.addAttribute("comment", new Comment());
         model.addAttribute("currentUser", currentUser);
-        model.addAttribute("files", fileRepository.findAllByTicketId(id));
+        model.addAttribute("files", fileService.findAllByTicketId(id));
         return "ticket/details";
     }
 
     @GetMapping("/ticket/user/{userId}")
     public String userTickets(@PathVariable(name = "userId") Long id, Model model) {
-        List<Ticket> tickets = ticketRepository.findAllByUserId(id);
+        List<Ticket> tickets = ticketService.findAllByUserId(id);
         model.addAttribute("tickets", tickets);
         return "ticket/index";
     }
@@ -68,7 +69,7 @@ public class TicketController {
     @GetMapping("/ticket/create")
     public String create(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
         model.addAttribute("ticket", new Ticket());
-        model.addAttribute("user", userRepository.findFirstById(currentUser.getUser().getId()));
+        model.addAttribute("user", userService.findFirstById(currentUser.getUser().getId()));
         return "ticket/create";
     }
 
@@ -79,31 +80,31 @@ public class TicketController {
             return "ticket/create";
         }
         ticket.setStatus("open");
-        ticketRepository.save(ticket);
+        ticketService.save(ticket);
         return "redirect:/ticket/index";
     }
 
     @GetMapping("ticket/{ticketId}/close")
     public String close(@PathVariable(name = "ticketId") Long id) {
-        Ticket ticket = ticketRepository.findFirstById(id);
+        Ticket ticket = ticketService.findFirstById(id);
         ticket.setStatus("closed");
-        ticketRepository.save(ticket);
+        ticketService.save(ticket);
         return "redirect:/ticket/index";
     }
 
     @GetMapping("ticket/search")
     public String search(@RequestParam(name = "query") String query, Model model) {
-        model.addAttribute("tickets", ticketRepository.findAllByTitleLike(query));
+        model.addAttribute("tickets", ticketService.findAllByTitleLike(query));
         return "ticket/index";
     }
 
     @ModelAttribute("users")
     public List<User> users() {
-        return userRepository.findAll();
+        return userService.findAll();
     }
 
     @ModelAttribute("categories")
     public List<Category> categories() {
-        return categoryRepository.findAll();
+        return categoryService.findAll();
     }
 }

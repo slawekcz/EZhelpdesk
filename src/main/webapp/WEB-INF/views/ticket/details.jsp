@@ -15,9 +15,9 @@
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <p>Ticket id ${ticket.id}</p>
-                <p>Title ${ticket.title}</p>
-                <p>Created by ${ticket.user.username}</p>
+                <p class="btn btn-primary btn-xs">Ticket</p> <p> ${ticket.id}</p>
+                <p class="btn btn-primary btn-xs">Title</p>  <p>${ticket.title}</p>
+                <p class="btn btn-primary btn-xs">Created by</p> <p>${ticket.user.username}</p>
             </div>
 
             <div class="panel-body">

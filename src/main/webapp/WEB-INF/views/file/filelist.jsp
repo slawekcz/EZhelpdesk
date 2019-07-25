@@ -17,7 +17,7 @@
                 <span><a href="/files/download/${file.id}">${file.fileName}</a></span>
                 <span>${file.fileType}</span>
                 <span>
-                <a href="#" onclick="confirmDelete(${file.id}, '${file.fileName}')"
+                <a href="#" onclick="confirmDelete(${file.id}, ${ticket.id}, '${file.fileName}')"
                    class="btn btn-danger btn-xs">Delete</a>
             </span>
             </div>
@@ -25,9 +25,9 @@
     </div>
 </div>
 <script>
-    function confirmDelete(id, name) {
+    function confirmDelete(id, tid,  name) {
         if (confirm("Do you want to delete a file \"" + name + "\"?")) {
-            window.location.href = "/files/delete/" + id;
+            window.location.href = "/ticket/" +  tid + "/files/delete/" + id ;
         }
     }
 </script>

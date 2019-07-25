@@ -13,9 +13,9 @@ public class EzhelpdeskApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext ctx = SpringApplication.run(EzhelpdeskApplication.class, args);
-        ctx.getBean(CategoryFixture.class).initData();
-        ctx.getBean(UserFixture.class).initData();
-        ctx.getBean(TicketFixture.class).initData();
+//        ctx.getBean(CategoryFixture.class).initData();
+//        ctx.getBean(UserFixture.class).initData();
+//        ctx.getBean(TicketFixture.class).initData();
 
 
     }

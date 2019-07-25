@@ -56,4 +56,8 @@ public class FileService {
     public File findById(Long id) {
         return fileRepository.findById(id).orElse(null);
     }
+
+    public List<File> findAllByTicketId(Long id) {
+        return fileRepository.findAllByTicketId(id);
+    }
 }

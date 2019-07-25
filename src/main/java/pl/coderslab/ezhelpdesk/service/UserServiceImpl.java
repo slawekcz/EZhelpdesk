@@ -9,6 +9,7 @@ import pl.coderslab.ezhelpdesk.repository.UserRepository;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -35,6 +36,25 @@ public class UserServiceImpl implements UserService {
         user.setEnabled(1);
         Role userRole = roleRepository.findByName("ROLE_USER");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        userRepository.save(user);
+    }
+
+    @Override
+    public User findFirstById(Long id) {
+        return userRepository.findFirstById(id);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public void editUser(User user) {
+        User userInDB = userRepository.findFirstById(user.getId());
+        user.setPassword(userInDB.getPassword());
+        user.setRoles(userInDB.getRoles());
+        user.setEnabled(1);
         userRepository.save(user);
     }
 }
