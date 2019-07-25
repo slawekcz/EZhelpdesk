@@ -1,8 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!doctype html>
 <html>
@@ -15,9 +16,14 @@
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <p class="btn btn-primary btn-xs">Ticket</p> <p> ${ticket.id}</p>
-                <p class="btn btn-primary btn-xs">Title</p>  <p>${ticket.title}</p>
-                <p class="btn btn-primary btn-xs">Created by</p> <p>${ticket.user.username}</p>
+                <p class="label label-success label-xs">Ticket ${ticket.id}</p><span></span>
+                <p class="label label-success label-xs">Title: </p> <span>${ticket.title}</span><br>
+                <p class="label label-success label-xs">Created by: </p><span>${ticket.user.username}</span>
+                <p class="pull-right">
+                    <fmt:parseDate value="${ticket.created}}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime"
+                                   type="both"/>
+                    <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${ parsedDateTime }"/>
+                </p>
             </div>
 
             <div class="panel-body">
@@ -36,9 +42,8 @@
                     </p>
                     <p>${ticket.text}</p>
 
-                    <p>Created on: ${ticket.created}</p>
 
-                    <%@include file="../file/filelist.jsp"%>
+                    <%@include file="../file/filelist.jsp" %>
                 </div>
 
             </div>
@@ -53,7 +58,18 @@
 
                     <div class="panel panel-heading">
                             ${comment.user.username}
-                        <span class="pull-right">${comment.created}</span>
+                        <sec:authorize access="hasRole('ADMIN')">
+                        <span class="pull-right"><a href="#"
+                                                    onclick="confirmDeleteComment(${ticket.id}, ${comment.id})">Delete</a>
+
+                        </sec:authorize>
+
+                        </span>
+                        <span class="pull-right">
+                                <fmt:parseDate value="${comment.created}}" pattern="yyyy-MM-dd'T'HH:mm"
+                                            var="parsedDateTime" type="both"/>
+                                <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${ parsedDateTime }"/>
+                        </span>
                     </div>
 
                     <div class="panel panel-body">
@@ -95,4 +111,11 @@
 </div>
 
 </body>
+<script>
+    function confirmDeleteComment(tid, cid) {
+        if (confirm("Do you want to delete a comment?")) {
+            window.location.href = "/ticket/" + tid + "/comment/" + cid + "/delete";
+        }
+    }
+</script>
 </html>

@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
 <%@ include file="../include/header.jspf" %>
@@ -54,7 +55,13 @@
                                     </c:otherwise>
                                 </c:choose>
                             </td>
-                            <td>${ticket.created}</td>
+
+                            <td>
+                                <fmt:parseDate value="${ticket.created}}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+                                <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${ parsedDateTime }" />
+
+                            </td>
+
                             <td>
                                 <a href="${pageContext.request.contextPath}/ticket/${ticket.id}"
                                    class="label label-info">Comment</a>

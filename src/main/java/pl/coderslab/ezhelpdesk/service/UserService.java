@@ -10,7 +10,7 @@ public interface UserService {
 
     void saveUser(User user);
 
-    Object findFirstById(Long id);
+    User findFirstById(Long id);
 
     List<User> findAll();
 

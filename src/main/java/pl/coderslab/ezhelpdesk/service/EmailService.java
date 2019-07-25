@@ -56,7 +56,7 @@ public class EmailService {
                     InternetAddress.parse(to));
 
             // Set Subject: header field
-            message.setSubject("Confirmation request");
+            message.setSubject("EZhelpDesk");
 
             // Put the content of your message
             message.setText(messageText);

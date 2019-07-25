@@ -10,9 +10,6 @@ import pl.coderslab.ezhelpdesk.entity.Category;
 import pl.coderslab.ezhelpdesk.entity.Comment;
 import pl.coderslab.ezhelpdesk.entity.Ticket;
 import pl.coderslab.ezhelpdesk.entity.User;
-import pl.coderslab.ezhelpdesk.repository.CategoryRepository;
-import pl.coderslab.ezhelpdesk.repository.FileRepository;
-import pl.coderslab.ezhelpdesk.repository.TicketRepository;
 import pl.coderslab.ezhelpdesk.repository.UserRepository;
 import pl.coderslab.ezhelpdesk.service.*;
 
@@ -28,7 +25,7 @@ public class TicketController {
 
     @Autowired
     public TicketController(FileService fileService, UserService userService,
-                            TicketService ticketService, CategoryService categoryService) {
+                            TicketService ticketService, CategoryService categoryService, UserRepository userRepository) {
         this.fileService = fileService;
         this.userService = userService;
         this.ticketService = ticketService;
@@ -69,13 +66,16 @@ public class TicketController {
     @GetMapping("/ticket/create")
     public String create(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
         model.addAttribute("ticket", new Ticket());
+        if (currentUser == null) {
+            return "redirect:/login";
+        }
         model.addAttribute("user", userService.findFirstById(currentUser.getUser().getId()));
         return "ticket/create";
     }
 
     @PostMapping("/ticket/create")
-    public String create(@Valid Ticket ticket, @AuthenticationPrincipal CurrentUser currentUser,
-                         BindingResult result) {
+    public String create(@Valid Ticket ticket, BindingResult result,
+                         @AuthenticationPrincipal CurrentUser currentUser) {
         if (result.hasErrors()) {
             return "ticket/create";
         }

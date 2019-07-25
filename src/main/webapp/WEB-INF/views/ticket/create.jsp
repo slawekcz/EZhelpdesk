@@ -11,7 +11,11 @@
 <html>
 
 <%@ include file="../include/header.jspf" %>
-
+<style>
+    .error {
+        color: red;
+    }
+</style>
 <body>
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
@@ -29,7 +33,7 @@
 
                         <div class="col-md-6">
                             <form:input path="title" id="title" type="text" class="form-control" value=""/>
-                            <form:errors path="title"/>
+                            <form:errors path="title" cssClass="error"/>
                         </div>
                     </div>
 
@@ -42,7 +46,7 @@
                                 <form:options items="${categories}" itemValue="id" itemLabel="name"></form:options>
                             </form:select>
 
-                            <form:errors path="category"/>
+                            <form:errors path="category" cssClass="error"/>
                         </div>
                     </div>
 
@@ -57,7 +61,7 @@
                                 <form:option value="high">High</form:option>
                             </form:select>
 
-                            <form:errors path="priority"/>
+                            <form:errors path="priority" cssClass="error"/>
                         </div>
                     </div>
 
@@ -67,7 +71,7 @@
                         <div class="col-md-6">
                             <form:textarea path="text" rows="10" class="form-control" name="message"></form:textarea>
 
-                            <form:errors path="text"/>
+                            <form:errors path="text" cssClass="error"/>
                         </div>
                     </div>
 
