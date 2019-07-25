@@ -16,9 +16,9 @@
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <p class="label label-success label-xs">Ticket ${ticket.id}</p><span></span>
-                <p class="label label-success label-xs">Title: </p> <span>${ticket.title}</span><br>
-                <p class="label label-success label-xs">Created by: </p><span>${ticket.user.username}</span>
+                <h2 class="">Title: ${ticket.title}</h2> <br>
+                <p class="label label-success label-default-mod label-xs">Ticket ${ticket.id}</p><span></span>
+                <p class="label label-success label-default-mod label-xs">Created by: </p><span> ${ticket.user.username}</span>
                 <p class="pull-right">
                     <fmt:parseDate value="${ticket.created}}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime"
                                    type="both"/>
@@ -33,7 +33,7 @@
                     <p>Category: ${ticket.category.name}
                         <c:choose>
                             <c:when test="${ticket.status == 'open'}">
-                                <span class="label label-success">${ticket.status}</span>
+                                <span class="label label-success label-default-mod">${ticket.status}</span>
                             </c:when>
                             <c:otherwise>
                                 <span class="label label-danger">${ticket.status}</span>
@@ -57,7 +57,9 @@
                 <div class="panel panel-default">
 
                     <div class="panel panel-heading">
-                            ${comment.user.username}
+                        <p class="label label-success label-default-mod label-xs">Created by
+                        </p> <span> ${comment.user.username}</span>
+
                         <sec:authorize access="hasRole('ADMIN')">
                         <span class="pull-right"><a href="#"
                                                     onclick="confirmDeleteComment(${ticket.id}, ${comment.id})">Delete</a>

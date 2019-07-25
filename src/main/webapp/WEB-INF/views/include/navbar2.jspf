@@ -1,0 +1,66 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">ezHelpDesk</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+
+                <li><a href="/ticket/create"><input type="button" value="New Ticket" class="btn btn-warning"/></a></li>
+                <li>
+                    <a href="/categories">Categories</a>
+                </li>
+                <sec:authorize access="hasRole('ADMIN')">
+                <li>
+                    <a href="/admin/users">Users</a>
+                </li>
+                </sec:authorize>
+            </ul>
+
+            <form class="navbar-form navbar-left" action="/ticket/search" method="get">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search" name="query" style="background-color: #feeec4">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+
+            <ul class="nav navbar-nav navbar-right">
+                <sec:authorize access="isAnonymous()">
+                    <li style="margin: 10px">
+                        <form action="<c:url value="/login"/>" method="get">
+                            <button type="submit" class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-log-in"></span>Log in
+                            </button>
+                        </form>
+                    </li>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                    <li><a href="#">${currentUser.username}</a></li>
+                    <li><a href="#">Posiada role: <sec:authentication property="authorities"/></a></li>
+
+                    <li style="margin: 10px">
+                        <form action="<c:url value="/logout"/>" method="post">
+                            <button type="submit" class="btn btn-warning btn-sm">
+                                <span class="glyphicon glyphicon-log-out"></span> Log out
+                            </button>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        </form>
+                    </li>
+                </sec:authorize>
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

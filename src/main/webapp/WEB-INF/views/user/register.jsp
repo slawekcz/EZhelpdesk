@@ -43,7 +43,7 @@
             <form:errors path="password" cssClass="error"></form:errors>
         </div>
 
-        <input type='submit' class="btn btn-info center-block" value="Create account">
+        <input type='submit' class="btn btn-default btn-default-mod center-block" value="Create account">
     </form:form>
 
 </body>

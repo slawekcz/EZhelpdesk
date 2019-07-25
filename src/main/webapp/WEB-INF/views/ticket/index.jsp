@@ -39,7 +39,7 @@
                             </td>
                             <td>
                                 <a href=<c:url value="${pageContext.request.contextPath}/ticket/${ticket.id}"/>>
-                                        ${ticket.title}
+                                       <span style="color: #f14444">${ticket.title}</span>
                                 </a>
                             </td>
                             <td>
@@ -48,7 +48,7 @@
                             <td>
                                 <c:choose>
                                     <c:when test="${ticket.status == 'open'}">
-                                        <span class="label label-success">${ticket.status}</span>
+                                        <span class="label label-default label-default-mod">${ticket.status}</span>
                                     </c:when>
                                     <c:otherwise>
                                         <span class="label label-danger">${ticket.status}</span>
@@ -64,7 +64,7 @@
 
                             <td>
                                 <a href="${pageContext.request.contextPath}/ticket/${ticket.id}"
-                                   class="label label-info">Comment</a>
+                                   class="label label-default label-default-mod">Comment</a>
                                 <sec:authorize access="hasRole('ADMIN')">
                                     <c:if test="${ticket.status == 'open'}">
                                         <a href="${pageContext.request.contextPath}/ticket/${ticket.id}/close"

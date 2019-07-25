@@ -1,8 +1,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<%--    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">--%>
 
-    <title>${title}</title>
+    <title>ezHelpDesk</title>
+
+
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
     <style>
         body, html {
@@ -48,6 +53,69 @@
 
         .footer {
             margin-top: 20px;
+        }
+
+        .label-success {
+            margin: 3px;
+        }
+
+
+        .row {margin-top: 90px;}
+        nav.navbar-findcond { background: #fff; border-color: #ccc; box-shadow: 0 0 2px 0 #ccc; }
+        nav.navbar-findcond a { color: #f14444; }
+        nav.navbar-findcond ul.navbar-nav a { color: #f14444; border-style: solid; border-width: 0 0 2px 0; border-color: #fff; }
+        nav.navbar-findcond ul.navbar-nav a:hover,
+        nav.navbar-findcond ul.navbar-nav a:visited,
+        nav.navbar-findcond ul.navbar-nav a:focus,
+        nav.navbar-findcond ul.navbar-nav a:active { background: #fff; }
+        nav.navbar-findcond ul.navbar-nav a:hover { border-color: #f14444; }
+        nav.navbar-findcond li.divider { background: #ccc; }
+        nav.navbar-findcond button.navbar-toggle { background: #f14444; border-radius: 2px; }
+        nav.navbar-findcond button.navbar-toggle:hover { background: #999; }
+        nav.navbar-findcond button.navbar-toggle > span.icon-bar { background: #fff; }
+        nav.navbar-findcond ul.dropdown-menu { border: 0; background: #fff; border-radius: 4px; margin: 4px 0; box-shadow: 0 0 4px 0 #ccc; }
+        nav.navbar-findcond ul.dropdown-menu > li > a { color: #444; }
+        nav.navbar-findcond ul.dropdown-menu > li > a:hover { background: #f14444; color: #fff; }
+        nav.navbar-findcond span.badge { background: #f14444; font-weight: normal; font-size: 11px; margin: 0 4px; }
+        nav.navbar-findcond span.badge.new { background: rgba(255, 0, 0, 0.8); color: #fff; }
+
+        .btn-default-mod {
+            color: #f14444; !important;
+            border-color: #f14444; !important;
+        }
+
+        .label-default-mod {
+            color: #f14444; !important;
+            border-color: #f14444; !important;
+            border: 0.5px solid;
+            background-color: #fff;
+        }
+
+        .form-control:focus {
+            border-color: #ff0202;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px ;1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255, 0, 0, 0.6);
+        }
+
+        .form-control {
+            border-color: #ff0202;
+        }
+
+        body {
+            background: rgb(241,7,7);
+            background: radial-gradient(circle, rgba(241,7,7,0.08757006220456931) 3%, rgba(255,255,255,0.0959734235491071) 100%);
+
+        }
+
+        .panel-default>.panel-heading {
+            color: #fff;
+            background-color: #f14444;
+            border-color: #ffffff;
+        }
+
+        .navbar-form {
+            margin-top: 15px;
         }
 
     </style>

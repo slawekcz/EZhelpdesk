@@ -1,5 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: A754366
@@ -11,6 +13,8 @@
 <html>
 
 <%@ include file="../include/header.jspf" %>
+<%@ include file="../include/navbar.jspf" %>
+
 <style>
     .error {
         color: red;

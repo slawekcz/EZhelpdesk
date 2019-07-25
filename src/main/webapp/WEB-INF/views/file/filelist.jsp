@@ -5,8 +5,8 @@
     <div>
         <form:form method="POST" action="/files/list" enctype="multipart/form-data">
             <input type="hidden" name="ticketId" value="${ticket.id}"/>
-            <div class="form-inline">
-                <input type="file" name="file" id="file" class="form-control"/>
+            <div class="form-inline" >
+                <input type="file" name="file" id="file" class="form-control" style="background-color: #feeec4"/>
                 <button type="submit" class="btn btn-primary btn-xs">upload</button>
             </div>
         </form:form>
