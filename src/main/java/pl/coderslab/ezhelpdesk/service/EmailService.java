@@ -18,9 +18,9 @@ import java.util.Properties;
 
 @Service
 public class EmailService {
-    public void sendConfirmationEmail(String email) {
+    public void sendConfirmationEmail(String toEmail, String messageText) {
         // Put recipient’s address
-        String to = email;
+        String to = toEmail;
 
         // Put sender’s address
         String from = "slavosz@example.com";
@@ -56,10 +56,10 @@ public class EmailService {
                     InternetAddress.parse(to));
 
             // Set Subject: header field
-            message.setSubject("My first message with JavaMail");
+            message.setSubject("Confirmation request");
 
             // Put the content of your message
-            message.setText("Hi there, this is my first message sent with JavaMail");
+            message.setText(messageText);
 
             // Send message
             Transport.send(message);

@@ -38,7 +38,7 @@ public class UserController {
             return "user/register";
         }
         userService.saveUser(user);
-        emailService.sendConfirmationEmail(user.getEmail());
+        emailService.sendConfirmationEmail(user.getEmail(), "You have ragistered, please confirm email address");
         return "redirect:/ticket/index";
     }
 
@@ -67,16 +67,18 @@ public class UserController {
         return "redirect:/admin/user/details/" + id;
     }
 
-    @GetMapping("/create-user")
-    @ResponseBody
-    public String createUser() {
-        User user = new User();
-        user.setUsername("admin");
-        user.setPassword("admin");
-        user.setFirstName("Tom");
-        user.setLastName("Wolski");
-        user.setEmail("security@xxb.ccc");
+    @GetMapping("/admin/user/{userId}/edit")
+    public String editUser(@PathVariable(name="userId") Long id, Model model) {
+        model.addAttribute("user", userRepository.findFirstById(id));
+        return "admin/edit_user";
+    }
+
+    @PostMapping("/admin/user/edit")
+    public String editUser(@Valid User user, BindingResult result) {
+        if (result.hasErrors()) {
+            return "admin/edit_user";
+        }
         userService.saveUser(user);
-        return "admin";
+        return "redirect:/admin/users";
     }
 }

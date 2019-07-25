@@ -1,6 +1,7 @@
 package pl.coderslab.ezhelpdesk.entity;
 
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import javax.validation.constraints.NotBlank;
 
@@ -34,9 +35,11 @@ public class Ticket {
     private Category category;
 
     @OneToMany(mappedBy = "ticket")
+    @ToString.Exclude
     private List<Comment> comment;
 
     @OneToMany(mappedBy = "ticket")
+    @ToString.Exclude
     private List<File> files;
 
 }

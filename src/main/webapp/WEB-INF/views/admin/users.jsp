@@ -30,7 +30,7 @@
                     <c:forEach items="${users}" var="user">
                         <tr>
                             <td>
-                                <a href="<c:url value="${pageContext.request.contextPath}/admin/user/details/${user.id}"/>">${user.firstName } ${user.lastName}</a>
+                                <a href="<c:url value="${pageContext.request.contextPath}/admin/user/${user.id}/edit"/>">${user.firstName } ${user.lastName}</a>
                             </td>
 
                         </tr>
