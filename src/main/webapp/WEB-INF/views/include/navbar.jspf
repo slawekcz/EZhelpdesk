@@ -24,6 +24,7 @@
         <div class="collapse navbar-collapse" id="navbar">
             <div class="nav navbar-nav navbar-left">
                 <li><a href="/ticket/create"><input type="button" value="New Ticket" class="btn btn-danger"/></a></li>
+
                 <form class="navbar-form navbar-left search-form" action="/ticket/search" method="get">
                     <input type="text" class="form-control" placeholder="Search" name="query">
                 </form>

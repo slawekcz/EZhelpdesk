@@ -14,7 +14,8 @@
 </head>
 <body>
 <div>
-    <img src="https://cdn3.wpbeginner.com/wp-content/uploads/2016/03/403forbiddenerror.jpg"
+
+    <img src="https://thumbs.dreamstime.com/z/concept-forbidden-access-concept-forbidden-access-to-web-page-cute-kind-wizard-flat-design-illustration-very-120251613.jpg"
          class="center-img"/>
 
 </div>
