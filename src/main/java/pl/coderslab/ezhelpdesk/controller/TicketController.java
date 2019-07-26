@@ -17,6 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@SessionAttributes("currentUser")
 public class TicketController {
     private FileService fileService;
     private UserService userService;
@@ -94,7 +95,8 @@ public class TicketController {
 
     @GetMapping("ticket/search")
     public String search(@RequestParam(name = "query") String query, Model model) {
-        model.addAttribute("tickets", ticketService.findAllByTitleLike(query));
+//        model.addAttribute("tickets", ticketService.findAllByTitleLike(query));
+        model.addAttribute("tickets", ticketService.findByNameOrUser(query));
         return "ticket/index";
     }
 

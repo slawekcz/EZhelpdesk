@@ -31,7 +31,8 @@
                     <c:forEach items="${categories}" var="category">
                         <tr>
                             <td>
-                                <a href="<c:url value="${pageContext.request.contextPath}/category/${category.id}"/>">${category.name}</a>
+                                <a href="<c:url value="${pageContext.request.contextPath}/category/${category.id}"/>">
+                                    <span style="color: #f14444;">${category.name}</span></a>
                             </td>
                         </tr>
                     </c:forEach>

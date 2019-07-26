@@ -38,7 +38,7 @@ public class UserController {
             return "user/register";
         }
         userService.saveUser(user);
-        emailService.sendConfirmationEmail(user.getEmail(), "You have ragistered, please confirm email address");
+        emailService.sendConfirmationEmail(user.getEmail(), "You have registered, please confirm email address");
         return "redirect:/ticket/index";
     }
 

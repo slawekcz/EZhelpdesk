@@ -18,7 +18,7 @@
 
 
 <body>
-<div class="row">
+<div class="row form-signin center-block">
     <h2 class="center-text">Edit user</h2>
     <form:form class="_form-signin _center-block" action="/admin/user/edit" method="post" modelAttribute="user">
         <form:hidden path="id"/>

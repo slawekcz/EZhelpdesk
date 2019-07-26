@@ -22,13 +22,15 @@ public class User {
     private String firstName;
     @NotBlank
     private String lastName;
+    @NotBlank
     @Email(message = "enter valid email")
     private String email;
-    @Size(min = 3)
+    @Size(min = 3, message = "password must not be empty")
     private String password;
 
     @Column(nullable = false, unique = true)
     @NotBlank
+    @Size(min = 3, max = 15)
     private String username;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -51,7 +53,7 @@ public class User {
     private LocalDateTime created;
 
     public String getFullName() {
-        return firstName + " " +lastName;
+        return firstName + " " + lastName;
     }
 
 }

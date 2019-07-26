@@ -3,9 +3,11 @@ package pl.coderslab.ezhelpdesk.entity;
 import lombok.Data;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
+
 import javax.validation.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -31,6 +33,8 @@ public class Ticket {
 
     @ManyToOne
     private User user;
+
+    @NotNull
     @ManyToOne
     private Category category;
 

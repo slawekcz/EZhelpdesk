@@ -45,7 +45,7 @@
 
                 <sec:authorize access="isAuthenticated()">
                     <li><a href="#">${currentUser.username}</a></li>
-                    <li><a href="#">Posiada role: <sec:authentication property="authorities"/></a></li>
+                    <li><a href="#">Roles: <sec:authentication property="authorities"/></a></li>
 
                     <li style="margin: 10px">
                         <form action="<c:url value='/logout'/>" method="post">

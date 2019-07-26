@@ -32,6 +32,10 @@ public class TicketService {
         return ticketRepository.findAllByTitleLike(query);
     }
 
+    public List<Ticket> findByNameOrUser(String query) {
+        return ticketRepository.findByTitleOrUserName(query);
+    }
+
     public List<Ticket> findByCategory(Long id) {
         return ticketRepository.findAllByCategoryId(id);
     }

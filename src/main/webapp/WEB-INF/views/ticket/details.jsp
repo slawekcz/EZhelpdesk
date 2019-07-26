@@ -17,6 +17,16 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="">Title: ${ticket.title}</h2> <br>
+                <p>Category: ${ticket.category.name}
+                    <c:choose>
+                        <c:when test="${ticket.status == 'open'}">
+                            <span class="label label-success label-default-mod">${ticket.status}</span>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="label label-danger">${ticket.status}</span>
+                        </c:otherwise>
+                    </c:choose>
+                </p>
                 <p class="label label-success label-default-mod label-xs">Ticket ${ticket.id}</p><span></span>
                 <p class="label label-success label-default-mod label-xs">Created by: </p><span> ${ticket.user.username}</span>
                 <p class="pull-right">
@@ -30,16 +40,6 @@
 
 
                 <div class="ticket-info">
-                    <p>Category: ${ticket.category.name}
-                        <c:choose>
-                            <c:when test="${ticket.status == 'open'}">
-                                <span class="label label-success label-default-mod">${ticket.status}</span>
-                            </c:when>
-                            <c:otherwise>
-                                <span class="label label-danger">${ticket.status}</span>
-                            </c:otherwise>
-                        </c:choose>
-                    </p>
                     <p>${ticket.text}</p>
 
 

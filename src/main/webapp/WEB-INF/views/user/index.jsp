@@ -26,7 +26,7 @@
                     <c:forEach items="${users}" var="user">
                         <tr>
                             <td>
-                                    ${user.firstName }  ${user.lastName}
+                                 <span style="color: #f14444"> ${user.firstName }  ${user.lastName}</span>
                             </td>
                             <td>
                                 <a href=<c:url value="${pageContext.request.contextPath}/user/${user.id}"/>>
